@@ -8,12 +8,18 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: src
-
+    services:
+      db:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: laravel
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
